@@ -34,13 +34,16 @@ def repeat_f(i):
         if outside != []:
             ax.scatter(*zip(*outside),c='r')
 def graph(pi_list):
-    plt.plot(range(len(pi_list)), pi_list,'-b')
-    plt.plot([0,len(pi_list)],[np.pi,np.pi],'--r')
+    plt.plot(range(len(pi_list)), pi_list,'-b',label='Calculated pi')
+    plt.plot([0,len(pi_list)],[np.pi,np.pi],'--r', label='Known pi')
+    plt.xlabel('iterations')
+    plt.ylabel('Value of pi')
+    plt.legend()
     plt.show()
 if __name__=="__main__":
-    #clear()
-    inter=1
+    speed = 1 # Low numbers for generating faster, high numbers for generating slower
+    points_to_generate = 1000
     fig, ax =plt.subplots(figsize=(8, 8), dpi=80)
-    ani = FuncAnimation(fig, repeat_f, init_func=init, frames=1000,repeat=False, interval=inter)
+    ani = FuncAnimation(fig, repeat_f, init_func=init, frames=2*points_to_generate,repeat=False, interval=speed)
     plt.show()
     graph(pi_list)
